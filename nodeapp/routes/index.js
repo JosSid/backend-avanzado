@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 
   const ahora = new Date();
 
-  res.locals.bienvenido = 'Bienvenido';
+  res.locals.bienvenido = res.__('Bienvenido');
   res.locals.codigo = '<script>alert("inyección de código")</script>'
   res.locals.usuarios = [
     { nombre: 'Jones', edad: 34 },
