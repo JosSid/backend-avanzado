@@ -1,5 +1,10 @@
 {
 	"El segundo actual es": "Current second is",
 	"El segundo actual es impar": "Current second is odd",
-	"El segundo actual es par": "Current second is even"
+	"El segundo actual es par": "Current second is even",
+	"i18n example for plurals": "i18n example for plurals",
+	"Mouse": {
+		"one": "Mouse",
+		"other": "Mice"
+	}
 }
