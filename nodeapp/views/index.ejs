@@ -10,7 +10,7 @@
     <% include cabecera.ejs %>
 
     <p><%= bienvenido %> to <%= title %></p>
-    <p>El segundo actual es <%= segundoActual %></p>
+    <p><%= __('El segundo actual es')%> <%= segundoActual %></p>
     <p>El color es <%= color %></p>
 
     <h3>Inyección de código</h3>
@@ -18,9 +18,9 @@
 
     <h3>Condiciones</h3>
     <% if (estado) { %>
-      <p>El segundo actual es par</p>
+      <p><%= __('El segundo actual es par') %></p>
     <% } else { %>
-      <p>El segundo actual es impar</p>
+      <p><%= __('El segundo actual es impar') %></p>
     <% } %>
 
     <h3>Bucles</h3>

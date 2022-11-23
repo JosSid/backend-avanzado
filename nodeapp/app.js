@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const basicAuthMiddleware = require('./lib/basicAuthMiddleware');
+const i18n = require('./lib/i18nConfigure.js');
 
 var app = express();
 
@@ -14,6 +15,9 @@ app.set('view engine', 'ejs');
 app.locals.title = 'Anuncios';
 
 require('./lib/connectMongoose');
+
+// Setup de i18n
+app.use(i18n.init)
 
 app.use(logger('dev'));
 app.use(express.json());
