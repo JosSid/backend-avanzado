@@ -3,6 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const session = require('express-session');
+
 const basicAuthMiddleware = require('./lib/basicAuthMiddleware');
 const i18n = require('./lib/i18nConfigure.js');
 const LoginController = require('./routes/loginController');
@@ -42,6 +44,16 @@ app.use(i18n.init)
 
 const loginController = new LoginController();
 const privadoController = new PrivadoController();
+
+app.use(session({
+  name: 'nodeapp-session',
+  secret: '=i]292<(!HU"g1};Z&:',
+  saveUninitialized: true,
+  resave: false,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 2 // expira a los 2 dias de inactividad de usuario
+  }
+}));
 
 app.use('/',       require('./routes/index'));
 app.use('/features',  require('./routes/features'));
