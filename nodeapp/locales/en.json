@@ -7,5 +7,7 @@
 		"one": "Mouse",
 		"other": "Mice"
 	},
-	"Bienvenido": "Welcome"
+	"Bienvenido": "Welcome",
+	"18n example for plurals": "18n example for plurals",
+	"El segundo actual es Par": "El segundo actual es Par"
 }
