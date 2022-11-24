@@ -24,5 +24,7 @@
 	"rojo": "rojo",
 	"Login": "Login",
 	"Privado": "Privado",
-	"Invalid credentials": "Credenciales erroneas"
+	"Invalid credentials": "Credenciales erroneas",
+	"Esta seccion es para ": "Esta seccion es para ",
+	"Logout": "Logout"
 }

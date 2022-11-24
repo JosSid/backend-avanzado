@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 
 const basicAuthMiddleware = require('./lib/basicAuthMiddleware');
 const sessionAuth = require('./lib/sessionAuthMiddleware.js');
@@ -39,9 +40,7 @@ app.use('/api/agentes', basicAuthMiddleware, require('./routes/api/agentes'));
 // Setup de i18n
 app.use(i18n.init)
 
-/**
- * Rutas del Website
- */
+
 
 const loginController = new LoginController();
 const privadoController = new PrivadoController();
@@ -53,8 +52,20 @@ app.use(session({
   resave: false,
   cookie: {
     maxAge: 1000 * 60 * 60 * 24 * 2 // expira a los 2 dias de inactividad de usuario
-  }
+  },
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGODB_CONNECTION_STRING
+  })
 }));
+
+app.use((req, res, next) => {
+  res.locals.session = req.session;
+  next();
+});
+
+/**
+ * Rutas del Website
+ */
 
 app.use('/',       require('./routes/index'));
 app.use('/features',  require('./routes/features'));
@@ -63,6 +74,7 @@ app.use('/pedidos', require('./routes/pedidos'));
 // usamos el estilo de controladores para facilitar el testing
 app.get('/login', loginController.index);
 app.post('/login', loginController.post);
+app.get('/logout', loginController.logout);
 app.get('/privado', sessionAuth, privadoController.index);
 
 
