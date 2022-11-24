@@ -35,7 +35,7 @@ app.use('/api/agentes', basicAuthMiddleware, require('./routes/api/agentes'));
  * Rutas del Website
  */
 app.use('/',       require('./routes/index'));
-app.use('/users',  require('./routes/users'));
+app.use('/features',  require('./routes/features'));
 app.use('/pedidos', require('./routes/pedidos'));
 
 
