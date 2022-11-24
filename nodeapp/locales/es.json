@@ -23,5 +23,6 @@
 	"años": "años",
 	"rojo": "rojo",
 	"Login": "Login",
-	"Privado": "Privado"
+	"Privado": "Privado",
+	"Invalid credentials": "Credenciales erroneas"
 }

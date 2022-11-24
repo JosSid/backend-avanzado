@@ -49,6 +49,7 @@ app.use('/change-locale',  require('./routes/change-locale'));
 app.use('/pedidos', require('./routes/pedidos'));
 // usamos el estilo de controladores para facilitar el testing
 app.get('/login', loginController.index);
+app.post('/login', loginController.post);
 app.get('/privado', privadoController.index);
 
 
