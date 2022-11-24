@@ -9,6 +9,7 @@ i18n.configure({
     defaultLocale: 'en',
     autoReload: true, //watch for changes in JSON files to reload locale on updates - defaults to false
     syncFiles: true, //Sync locale information across all files
+    cookie: 'nodeapp-locale'
 });
 
 // para utilizar en scripts
