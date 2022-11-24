@@ -6,6 +6,7 @@ var logger = require('morgan');
 const session = require('express-session');
 
 const basicAuthMiddleware = require('./lib/basicAuthMiddleware');
+const sessionAuth = require('./lib/sessionAuthMiddleware.js');
 const i18n = require('./lib/i18nConfigure.js');
 const LoginController = require('./routes/loginController');
 const PrivadoController = require('./routes/privadoController');
@@ -62,7 +63,7 @@ app.use('/pedidos', require('./routes/pedidos'));
 // usamos el estilo de controladores para facilitar el testing
 app.get('/login', loginController.index);
 app.post('/login', loginController.post);
-app.get('/privado', privadoController.index);
+app.get('/privado', sessionAuth, privadoController.index);
 
 
 // catch 404 and forward to error handler
