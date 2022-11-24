@@ -1,4 +1,4 @@
-<% include cabecera.ejs %>
+<% include cabecera.html %>
 
   <!-- Mashead header-->
 <header class="masthead">
@@ -8,23 +8,23 @@
               <!-- Mashead text and app badges-->
               <div class="mb-5 mb-lg-0 text-center text-lg-start">
 
-                <p><%= bienvenido %> to <%= title %></p>
+                <p><%= bienvenido %> <%=__('to')%> <%= title %></p>
                 <p><%= __('El segundo actual es') %> <%= segundoActual %></p>
-                <p>El color es <%= color %></p>
+                <p><%=__('El color es')%> <%= color %></p>
 
-                <h3>Inyección de código</h3>
+                <h3><%=__('Inyección de código')%></h3>
                 <p><%= codigo %></p>
 
-                <h3>Condiciones</h3>
+                <h3><%=__('Condiciones')%></h3>
                 <% if (estado) { %>
                   <p><%= __('El segundo actual es Par') %></p>
                 <% } else { %>
                   <p><%= __('El segundo actual es impar') %></p>
                 <% } %>
 
-                <h3>Bucles</h3>
+                <h3><%=__('Bucles')%></h3>
                 <% usuarios.forEach(usuario => { %>
-                  <p>Usuario con nombre <%= usuario.nombre %> tiene <%= usuario.edad %> años</p>
+                  <p><%=__('Usuario con nombre')%> <%= usuario.nombre %> <%=__('tiene')%> <%= usuario.edad %> <%=__('años')%></p>
                 <% }) %>
 
                 <h2><%=__('18n example for plurals')%></h2>
@@ -41,4 +41,4 @@
   </div>
 </header>
 
-<% include pie.ejs %>
+<% include pie.html %>

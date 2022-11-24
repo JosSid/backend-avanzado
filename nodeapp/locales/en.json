@@ -9,5 +9,17 @@
 	},
 	"Bienvenido": "Welcome",
 	"18n example for plurals": "18n example for plurals",
-	"El segundo actual es Par": "El segundo actual es Par"
+	"El segundo actual es Par": "Current second is Even",
+	"Features": "Features",
+	"Download": "Download",
+	"Send Feedback": "Send Feedback",
+	"to": "to",
+	"El color es": "The color is",
+	"Inyección de código": "Code injection",
+	"Condiciones": "Conditions",
+	"Bucles": "Loops",
+	"Usuario con nombre": "User with name",
+	"tiene": "have",
+	"años": "years",
+	"rojo": "red"
 }

@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
 
   res.render('index', {
     segundoActual: ahora.getSeconds(),
-    color: 'rojo',
+    color: res.__('rojo'),
     estado: ahora.getSeconds() % 2 === 0
   });
 });

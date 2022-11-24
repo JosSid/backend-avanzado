@@ -8,6 +8,18 @@
 		"other": "Ratones"
 	},
 	"Bienvenido": "Bienvenido",
-	"18n example for plurals": "18n example for plurals",
-	"El segundo actual es Par": "El segundo actual es Par"
+	"18n example for plurals": "i18n ejemplo de plurales",
+	"El segundo actual es Par": "El segundo actual es Par",
+	"Features": "Características",
+	"Download": "Descargar",
+	"Send Feedback": "Enviar Feedback",
+	"to": "a",
+	"El color es": "El color es",
+	"Inyección de código": "Inyección de código",
+	"Condiciones": "Condiciones",
+	"Bucles": "Bucles",
+	"Usuario con nombre": "Usuario con nombre",
+	"tiene": "tiene",
+	"años": "años",
+	"rojo": "rojo"
 }
