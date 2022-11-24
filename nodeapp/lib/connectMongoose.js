@@ -9,6 +9,6 @@ mongoose.connection.once('open', () => {
   console.log('Conectado a MongoDB en', mongoose.connection.name);
 });
 
-mongoose.connect('mongodb://localhost/cursonode');
+mongoose.connect(process.env.MONGODB_CONNECTION_STRING);
 
 module.exports = mongoose.connection;

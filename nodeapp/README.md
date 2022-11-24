@@ -1,6 +1,14 @@
 # nodeapp
 
-Start the application:
+Copy .env.example to .env 
+
+```sh
+cp .env.example .env
+```
+
+and review your configuration.
+
+## Start the application:
 
 In production:
 
