@@ -22,5 +22,9 @@
 	"tiene": "tiene",
 	"años": "años",
 	"rojo": "rojo",
-	"Login": "Login"
+	"Login": "Login",
+	"Privado": "Privado",
+	"Invalid credentials": "Invalid credentials",
+	"Esta seccion es para": "Esta seccion es para",
+	"Logout": "Logout"
 }

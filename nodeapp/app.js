@@ -3,8 +3,15 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+
 const basicAuthMiddleware = require('./lib/basicAuthMiddleware');
+const sessionAuth = require('./lib/sessionAuthMiddleware');
+const jwtAuthMiddleware = require('./lib/jwtAuthMiddleware');
 const i18n = require('./lib/i18nConfigure.js');
+const LoginController = require('./routes/loginController');
+const PrivadoController = require('./routes/privadoController')
 
 var app = express();
 
@@ -26,22 +33,50 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/pdf', express.static('d:/PDFS'));
 
+const loginController = new LoginController();
+
 /**
  * Rutas del API
  */
-app.use('/api/agentes', basicAuthMiddleware, require('./routes/api/agentes'));
+app.use('/api/agentes', jwtAuthMiddleware,require('./routes/api/agentes'));
+app.use('/api/login', loginController.postJWT);
 
 // Setup de i18n
 app.use(i18n.init)
 
+const privadoController = new PrivadoController();
+
+app.use(session({
+  name: 'nodeapp-session',
+  secret: '=i]-292<(!HU"g1};Z&:',
+  saveUninitialized: true,
+  resave: false,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 2 // expira a los 2 dias de inactividad del usuario
+  },
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGODB_CONNECTION_STRING
+  })
+}));
+
+app.use((req, res, next) => {
+  res.locals.session = req.session;
+  next();
+});
+
 /**
  * Rutas del Website
  */
+
 app.use('/',       require('./routes/index'));
 app.use('/features',  require('./routes/features'));
 app.use('/change-locale',  require('./routes/change-locale'));
 app.use('/pedidos', require('./routes/pedidos'));
-
+// usamos el estilo de controladores para facilitarv el testing
+app.get('/login', loginController.index);
+app.post('/login', loginController.post);
+app.get('/logout', loginController.logout);
+app.get('/privado', sessionAuth, privadoController.index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -22,5 +22,9 @@
 	"tiene": "have",
 	"años": "years",
 	"rojo": "red",
-	"Login": "Login"
+	"Login": "Login",
+	"Privado": "Private",
+	"Invalid credentials": "Invalid credentials",
+	"Esta seccion es para": "Esta seccion es para",
+	"Logout": "Logout"
 }
