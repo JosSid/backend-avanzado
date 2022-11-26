@@ -8,6 +8,7 @@ const MongoStore = require('connect-mongo');
 
 const basicAuthMiddleware = require('./lib/basicAuthMiddleware');
 const sessionAuth = require('./lib/sessionAuthMiddleware.js');
+const jwtAuthMiddleware = require('./lib/jwtAuthMiddleware');
 const i18n = require('./lib/i18nConfigure.js');
 const LoginController = require('./routes/loginController');
 const PrivadoController = require('./routes/privadoController');
@@ -32,17 +33,17 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/pdf', express.static('d:/PDFS'));
 
+const loginController = new LoginController();
+
 /**
  * Rutas del API
  */
-app.use('/api/agentes', basicAuthMiddleware, require('./routes/api/agentes'));
+app.use('/api/agentes', jwtAuthMiddleware,require('./routes/api/agentes'));
+app.use('/api/login', loginController.postJWT);
 
 // Setup de i18n
 app.use(i18n.init)
 
-
-
-const loginController = new LoginController();
 const privadoController = new PrivadoController();
 
 app.use(session({
