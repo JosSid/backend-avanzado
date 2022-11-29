@@ -29,8 +29,8 @@ module.exports = async function() {
         developmentConfig :
         productionConfig
     
-    nodemailer.createTransport(activeConfig);
+    return nodemailer.createTransport(activeConfig);
 
-    return transport;
+    
 
 }
