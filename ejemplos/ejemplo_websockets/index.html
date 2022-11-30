@@ -26,7 +26,29 @@
 
     <script>
       $(function () {
+        
+        // establecer conexion con el servidor
+        const socket = io();
 
+        // enviar mensajes al servidor
+        $('form').submit(() => {
+            const texto = $('#m').val();
+            socket.emit('nuevo-mensaje', texto);
+            $('#m').val(''); // limpio el imput
+            return false;
+        });
+
+        // recibir mensajes desde el servidor
+        socket.on('mensaje-desde-el-servidor', texto => {
+            // añadir el texto recibido a la lista
+            const li = $('<li>').text(texto);
+            $('#messages').append(li)
+        });
+
+        socket.on('noticia', texto => {
+            const li = $('<li>').text(texto);
+            $('#messages').append(li)
+        })
 
       });
     </script>
