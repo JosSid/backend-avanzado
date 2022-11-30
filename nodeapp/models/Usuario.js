@@ -3,7 +3,10 @@
 const mongoose = require(`mongoose`);
 const bcrypt = require('bcrypt');
 const emailTransportConfigure = require('../lib/emailTransportConfigure');
-const nodemailer = require('nodemailer')
+const nodemailer = require('nodemailer');
+const { Requester } = require('cote');
+
+const requester = new Requester({ name: 'nodeapp' });
 
 // crear el esquema
 const usuarioSchema = mongoose.Schema({
@@ -22,7 +25,19 @@ usuarioSchema.methods.comparePassword = function(passwordEnClaro) {
 };
 
 usuarioSchema.methods.enviarEmail = async function(asunto, cuerpo) {
-    //recuperar el transport
+
+    const evento = {
+        type: 'enviar-email',
+
+        from: process.env.EMAIL_SERVICE_FROM,
+        to: this.email,
+        subject: asunto,
+        html: cuerpo
+    };
+
+    return new Promise(resolve => requester.send(evento, resolve));
+
+/*     //recuperar el transport
     const transport = await emailTransportConfigure();
 
     // enviar email
@@ -38,7 +53,7 @@ usuarioSchema.methods.enviarEmail = async function(asunto, cuerpo) {
     //previsualizacion del mensaje enviado
     console.log(`URL de previsualizacion: ${nodemailer.getTestMessageUrl(result)}`);
 
-    return result;
+    return result; */
 
 };
 
